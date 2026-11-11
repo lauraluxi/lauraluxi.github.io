@@ -1,0 +1,6 @@
+# Laura Cruz · Portfolio
+User-agent: *
+Allow: /
+# Caso confidencial: no indexar
+Disallow: /casos/data-marketplace/
+Disallow: /casos/smart-sales-ai/

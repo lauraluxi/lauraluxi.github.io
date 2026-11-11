@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es" data-ui="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Página no encontrada · Laura Cruz</title>
+<script>
+/* idioma y tema del sitio (mismas claves que core.js) */
+(function(){try{var l=localStorage.getItem('lc-lang')||((navigator.language||'es').slice(0,2)==='en'?'en':'es'),t=localStorage.getItem('lc-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+document.documentElement.setAttribute('data-ui',l);document.documentElement.lang=l;document.documentElement.setAttribute('data-mode',t);}catch(e){}})();
+</script>
+<style>
+:root{--bg:#FBF8FC;--ink:#1D1622;--muted:#5E5568;--violet:#6B2D82;--line:#E7DFEA;color-scheme:light}
+:root[data-mode="dark"]{--bg:#15111A;--ink:#F4EEF7;--muted:#B9AEC2;--violet:#D7A6EA;--line:#2E2536;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{display:grid;place-items:center;padding:32px;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Space Grotesk",Inter,ui-sans-serif,system-ui,sans-serif}
+main{max-width:520px}
+.k{font:600 12px/1.2 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin:0 0 14px}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px}
+p{color:var(--muted);margin:0 0 28px}
+a{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;background:var(--violet);color:#fff;font-weight:600;text-decoration:none}
+:root[data-mode="dark"] a{color:#1D1622}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+:root:not([data-ui="en"]) [lang="en"]{display:none}:root[data-ui="en"] [lang="es"]{display:none}
+</style>
+</head>
+<body>
+<main>
+  <p class="k">Error 404</p>
+  <h1><span lang="es">Esta página no existe</span><span lang="en">This page doesn’t exist</span></h1>
+  <p><span lang="es">Puede que el enlace haya cambiado. Desde el inicio puedes ver todos los proyectos.</span><span lang="en">The link may have changed. You can see every project from the home page.</span></p>
+  <a href="/"><span lang="es">← Volver al portafolio</span><span lang="en">← Back to the portfolio</span></a>
+</main>
+</body>
+</html>

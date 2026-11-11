@@ -1,0 +1,10 @@
+/* Laura Cruz · Portfolio V3 — protect.css
+   Disuasión de copia en casos confidenciales. Solo actúa dentro de [data-protect]
+   (la página del caso protegido o el caso abierto), nunca en el resto del sitio. */
+[data-protect] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+[data-protect] input, [data-protect] textarea, [data-protect] select, [data-protect] [contenteditable="true"] { -webkit-user-select: text; user-select: text; }
+[data-protect] img, [data-protect] video { -webkit-user-drag: none; user-drag: none; }
+@media print {
+  body[data-protect] > *, .page[data-protect] { display: none !important; }
+  body[data-protect]::after { content: "Contenido confidencial · Laura Cruz"; display: block; padding: 48px; font: 600 18px/1.4 system-ui, sans-serif; }
+}

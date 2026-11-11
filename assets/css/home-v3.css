@@ -1,0 +1,258 @@
+/* =====================================================================
+   Portfolio V3 · capa sobre el CSS original del ZIP (home.base.css)
+   No reemplaza estilos: solo añade tema oscuro, interacciones y piezas nuevas.
+   Se carga después de home.css solo en index.html.
+   ===================================================================== */
+
+/* ---------- tokens del Home → tokens semánticos (theme.css) ----------
+   Los nombres vienen del CSS original del ZIP; los valores ahora salen del sistema
+   de temas, así claro y oscuro usan los mismos componentes. */
+:root,:root[data-mode="dark"]{
+  --bg:var(--color-background);
+  --text:var(--color-text-primary);
+  --text-secondary:var(--color-text-secondary);
+  --border:var(--color-border);
+  --card-bg:var(--color-surface);
+  --violet:var(--color-action-primary);
+  --violet-ink:var(--color-action-primary);
+  --violet-text:var(--color-action-primary);
+  --soft-violet:var(--color-tint);
+  --lime:var(--color-band-highlight);              /* el antiguo verde lima: ahora rosa mexicano */
+  --lime-ink:var(--color-action-primary);
+  /* bandas oscuras (Experimentos, Servicios, Herramientas, Contacto, pie) */
+  --dark:var(--color-band-background);
+  --card-bg-dark:var(--color-band-surface);
+  --border-dark:var(--color-band-border);
+  --text-dark-bg:var(--color-band-text-primary);
+  --text-secondary-dark-bg:var(--color-band-text-secondary);
+  --visual-bg:var(--color-background-secondary);
+  --surface-raised:var(--color-surface);
+  --ease-out:cubic-bezier(.2,.7,.3,1);
+  /* tintes de marca para el fondo dinámico de cada tarjeta (marcas de proyecto, independientes) */
+  --tint-walmart:#E6F0FA;
+  --tint-santander:#FBE9E9;
+  --tint-nocnok:var(--color-background-secondary);
+  --tint-truper:#FFEDE0;
+}
+:root[data-mode="dark"]{
+  --tint-walmart:#1F2A3A;
+  --tint-santander:#3A2228;
+  --tint-truper:#3A2A24;
+}
+:root[data-mode="dark"] .arrow-link.violet,
+:root[data-mode="dark"] .case-cta{color:var(--violet-text);}
+:root[data-mode="dark"] .portrait-card{background:var(--surface-raised);}
+:root[data-mode="dark"] .portrait-card span{color:var(--violet-text);}
+:root[data-mode="dark"] .btn-dark{background:var(--color-text-primary);color:var(--color-background);}
+:root[data-mode="dark"] .btn-dark:hover{background:var(--color-action-primary);}
+:root[data-mode="dark"] .flagship-visual-wrap,
+:root[data-mode="dark"] .case-visual-wrap{background:var(--visual-bg);}
+:root[data-mode="dark"] .on-dark{border-top:1px solid var(--border-dark);}
+:root[data-mode="dark"] .about-photo svg{opacity:.55;}
+:root[data-mode="dark"] .hero-hand .ast{color:var(--lime);}
+:root[data-mode="dark"] .label--lime{color:var(--lime);}
+:root[data-mode="dark"] .portrait-lime{opacity:.92;}
+
+/* la página entera respeta el fondo del tema */
+:root{background:var(--bg);}
+:root{min-height:100vh;}
+
+/* ---------- enlace de salto ---------- */
+.skip-link{position:absolute;left:-999px;top:8px;z-index:200;background:var(--text);color:var(--bg);padding:10px 14px;font-family:var(--mono);font-size:12px;border-radius:6px;}
+.skip-link:focus{left:16px;}
+
+/* ---------- foco visible coherente con el ZIP ---------- */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px;}
+.on-dark a:focus-visible,.on-dark button:focus-visible{outline-color:var(--lime);}
+
+/* ---------- selector de tema (mismo lenguaje que el selector de idioma) ---------- */
+.theme-btn{display:inline-grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid var(--border);border-radius:50%;background:none;color:var(--text);cursor:pointer;transition:border-color .18s ease,color .18s ease,transform .25s var(--ease-out);}
+.theme-btn svg{width:16px;height:16px;grid-area:1/1;}
+.theme-btn .i-sun{display:none;}
+:root[data-mode="dark"] .theme-btn .i-sun{display:block;}
+:root[data-mode="dark"] .theme-btn .i-moon{display:none;}
+.theme-btn:hover{border-color:var(--violet);color:var(--violet-text);transform:rotate(-12deg);}
+.drawer-theme{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:.04em;text-transform:uppercase;}
+@media (max-width:520px){ .nav-actions > .theme-btn{display:none;} }
+
+/* nav-brand ahora es enlace al inicio */
+a.nav-brand{color:var(--text);}
+
+/* ---------- chips de estado ---------- */
+.lock-chip,.concept-chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary);border:1px solid var(--border);border-radius:99px;padding:3px 8px 3px 7px;white-space:nowrap;}
+.lock-chip .i-lock{width:11px;height:11px;}
+.flagship-status .lock-chip{margin-left:8px;}
+.case-idrow{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.case-id{font-size:10.5px;color:var(--text-secondary);letter-spacing:.05em;}
+.case-soon,.lab-soon{margin-top:auto;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary);}
+.lab-soon{color:var(--text-secondary-dark-bg);}
+.mock-note{position:absolute;z-index:5;right:12px;bottom:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#6D6D68;background:rgba(247,247,243,.86);padding:3px 7px;border-radius:4px;pointer-events:none;}
+.case-visual-wrap{position:relative;}
+
+/* ---------- tarjetas: toda la tarjeta es el área de clic cuando hay caso ---------- */
+.flagship-card,.case{position:relative;}
+.flagship-cta::after,.case-cta::after{content:"";position:absolute;inset:0;z-index:6;}
+.flagship-cta,.case-cta{position:static;}
+.flagship-card:has(.flagship-cta:focus-visible),.case:has(.case-cta:focus-visible){outline:2px solid var(--violet);outline-offset:3px;}
+.case:not(:has(.case-cta)){cursor:default;}
+
+/* ---------- trabajo: tres casos secundarios en escritorio ---------- */
+@media (min-width:1100px){ .work-secondary{grid-template-columns:repeat(3,1fr);} }
+
+/* ---------- hover: fondo dinámico + ampliación controlada de la pantalla ---------- */
+.flagship-card[data-brand="walmart"]{--tint:var(--tint-walmart);--brand-line:#0071CE;}
+.case[data-brand="santander"]{--tint:var(--tint-santander);--brand-line:#EC0000;}
+.case[data-brand="nocnok"]{--tint:var(--tint-nocnok);--brand-line:var(--violet);}
+.case[data-brand="truper"]{--tint:var(--tint-truper);--brand-line:#FF6601;}
+.flagship-visual-wrap,.case-visual-wrap{transition:background-color .45s var(--ease-out);}
+.flagship-visual-wrap::before,.case-visual-wrap::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--brand-line,var(--violet));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease-out);z-index:5;}
+@media (hover:hover){
+  .flagship-card:hover .flagship-visual-wrap,
+  .case:hover .case-visual-wrap{background-color:var(--tint);}
+  .flagship-card:hover .flagship-visual-wrap::before,
+  .case:hover .case-visual-wrap::before{transform:scaleX(1);}
+  .flagship-card:hover .case-visual{transform:scale(1.035) translateY(-4px);}
+  .case:hover .case-visual{transform:scale(1.05) translateY(-3px);}
+  .lab-card:hover .lab-visual{transform:scale(1.045);}
+}
+.flagship-card:focus-within .flagship-visual-wrap,.case:focus-within .case-visual-wrap{background-color:var(--tint);}
+.case-visual,.lab-visual{transition:transform .5s var(--ease-out);transform-origin:50% 60%;}
+.flagship-card .case-visual{transition:transform .5s var(--ease-out);}
+
+/* Truper: captura real del prototipo (proyecto público) */
+.shot-truper{display:flex;align-items:flex-end;justify-content:center;padding:18px 18px 0;}
+.shot-truper img{width:100%;height:auto;border-radius:6px 6px 0 0;box-shadow:0 10px 30px -12px rgba(23,23,23,.35);border:1px solid var(--border);border-bottom:0;}
+
+/* ---------- nuevos mocks en el lenguaje de los existentes ---------- */
+.mock-metro{background:linear-gradient(160deg,#1D1922,#29222F);height:100%;display:flex;align-items:center;justify-content:center;gap:18px;}
+.metro-phone{width:104px;height:178px;background:#fff;border-radius:16px;padding:12px 9px;display:flex;flex-direction:column;gap:7px;box-shadow:0 12px 30px rgba(0,0,0,.35);}
+.metro-phone.back{background:#332B39;transform:translateY(14px);}
+.metro-phone .mp-bar{height:8px;width:46%;border-radius:4px;background:#171717;}
+.metro-phone.back .mp-bar{background:#3a3b48;}
+.metro-phone .mp-card{height:52px;border-radius:8px;background:linear-gradient(135deg,#704B70,#382C40);}
+.metro-phone .mp-line{height:6px;border-radius:3px;background:#EAEAE2;}
+.metro-phone.back .mp-line{background:#2f303c;}
+.metro-phone .mp-line.s{width:60%;}
+.metro-phone .mp-btn{margin-top:auto;height:20px;border-radius:99px;background:#E8A7C1;}
+.mock-ds{background:#EDEDE6;height:100%;display:grid;grid-template-columns:repeat(4,44px);grid-auto-rows:min-content;align-content:center;justify-content:center;gap:12px;}
+.ds-sw{width:44px;height:44px;border-radius:8px;background:var(--c);border:1px solid #DCDCD5;}
+.ds-comp{grid-column:1/-1;display:flex;gap:8px;}
+.ds-btn{width:70px;height:24px;border-radius:99px;background:#704B70;}
+.ds-input{flex:1;height:24px;border-radius:6px;background:#fff;border:1px solid #DCDCD5;}
+
+/* ---------- aparición al hacer scroll (solo si JS está activo y hay movimiento) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  :root.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out);}
+  :root.js .reveal.is-in{opacity:1;transform:none;}
+  :root.js .work-secondary .reveal:nth-child(2),:root.js .lab-grid .reveal:nth-child(2){transition-delay:.06s;}
+  :root.js .work-secondary .reveal:nth-child(3),:root.js .lab-grid .reveal:nth-child(3){transition-delay:.12s;}
+}
+
+/* ---------- laboratorio: 5 tarjetas sin huecos raros ---------- */
+@media (min-width:1081px){ .lab-grid{grid-template-columns:repeat(3,1fr);} }
+@media (min-width:700px) and (max-width:1080px){ .lab-grid{grid-template-columns:1fr 1fr;} }
+
+.footer-copy{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--text-secondary-dark-bg);}
+
+/* ---------- movimiento reducido ---------- */
+@media (prefers-reduced-motion:reduce){
+  .case-visual,.lab-visual,.flagship-visual-wrap,.case-visual-wrap,.theme-btn{transition:none!important;}
+  .flagship-card:hover .case-visual,.case:hover .case-visual,.lab-card:hover .lab-visual{transform:none!important;}
+}
+
+/* los mocks representan pantallas de producto: conservan sus colores claros en modo oscuro */
+:root[data-mode="dark"] .mock{--soft-violet:#EAE7FF;--violet-ink:#4E3FD1;--border:#DCDCD5;--text:#171717;--text-secondary:#6D6D68;}
+
+/* ---------- DMP: portada con pantallas reales (animación de la V2 adaptada a la tarjeta del ZIP) ---------- */
+.flagship-card{--mx:0;--my:0;}
+.flagship-visual-wrap{min-height:440px;}
+.shot-stack{position:absolute;inset:0;display:block;}
+.shot-stack .scr{position:absolute;width:66%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--color-border);box-shadow:0 14px 34px -14px rgba(29,25,34,.45);}
+.shot-stack .scr img{display:block;width:100%;height:auto;}
+.shot-stack .scr-front{left:8%;top:30%;z-index:2;transform-origin:center;}
+.shot-stack .scr-back{right:6%;top:13%;z-index:1;transform:scale(.94);transform-origin:top right;}
+.shot-stack .scr-back::after{content:"";position:absolute;inset:0;background:rgba(23,23,23,.06);transition:opacity .5s;}
+.flagship-card:hover .shot-stack,.flagship-card:focus-within .shot-stack{transform:none;}
+@media (hover:hover){
+  .flagship-card:is(:hover,:focus-within) .shot-stack .scr-front{transform:translate(calc(-3% + var(--mx) * 12px),calc(5% + var(--my) * 10px)) rotate(-2.5deg) scale(1.08);box-shadow:0 30px 50px -18px rgba(23,23,23,.55);}
+  .flagship-card:is(:hover,:focus-within) .shot-stack .scr-back{transform:translate(calc(8% + var(--mx) * -8px),calc(-4% + var(--my) * -6px)) rotate(2.5deg) scale(1);}
+  .flagship-card:is(:hover,:focus-within) .shot-stack .scr-back::after{opacity:0;}
+  .flagship-card:is(:hover,:focus-within) .shot-stack .scr img{transform:translateY(-17.5%);}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .shot-stack .scr{transition:transform .6s cubic-bezier(.2,.8,.2,1.1),box-shadow .6s cubic-bezier(.2,.7,.2,1);}
+  .shot-stack .scr img{transition:transform 2.6s cubic-bezier(.45,0,.25,1) .25s;}
+  .flagship-card.is-tilting .shot-stack .scr{transition:transform .2s ease-out,box-shadow .6s;}
+  .shot-stack .scr-back img{transition-delay:.55s;}
+}
+@media (prefers-reduced-motion:reduce){ .shot-stack .scr,.shot-stack .scr img{transition:none!important;} }
+:root[data-mode="dark"] .shot-stack .scr{border-color:var(--color-border);}
+@media (max-width:900px){ .flagship-visual-wrap{min-height:300px;} }
+@media (max-width:520px){ .flagship-visual-wrap{min-height:240px;} .shot-stack .scr{width:76%;} .shot-stack .scr-front{left:5%;} }
+
+/* Menú fijo: «overflow-x:hidden» (CSS original) convierte el contenedor en zona de scroll y anula
+   position:sticky; «clip» evita igual el desbordamiento horizontal sin romper el menú fijo. */
+body{overflow-x:clip;}
+
+
+/* =====================================================================
+   Marca personal Atelier · ajustes de componentes del ZIP que tenían color fijo
+   ===================================================================== */
+.btn{background:var(--color-action-primary);color:var(--color-action-primary-foreground);}
+.btn:hover{background:var(--color-action-primary-hover);}
+.on-dark .btn{background:var(--color-band-action);color:var(--color-band-action-foreground);}
+.on-dark .btn:hover{background:var(--color-band-text-primary);}
+.btn-dark{background:var(--color-text-primary);color:var(--color-background);}
+.btn-dark:hover{background:var(--color-action-primary);color:var(--color-action-primary-foreground);}
+.label--lime{color:var(--color-action-primary);}
+.on-dark .label--lime{color:var(--color-band-highlight);}
+.hero-hand .ast{color:var(--color-accent-orange);}  /* decorativo */
+.portrait-card{background:var(--color-surface);}
+.portrait-lime{background:var(--color-accent-pink);}
+/* Retrato a color natural: sin escala de grises, sin tinte y sin grano */
+.portrait-frame img{filter:none;}
+.portrait-frame .duotone,.portrait-frame .grain{display:none;}
+.dot{background:var(--color-accent-pink);box-shadow:0 0 0 4px rgba(232,167,193,.25);}
+.hero-head .accent{color:var(--color-action-primary);}
+.on-dark .arrow-link{color:var(--color-band-text-primary);}
+.mock-note{color:#5D4F63;background:rgba(255,250,252,.92);}
+.mobile-drawer .scrim{background:rgba(29,25,34,.45);}
+
+/* ---------- Realce rosa mexicano en hover (antes verde lima) ---------- */
+@media (hover:hover){
+  .case:hover,.flagship-card:hover{border-color:var(--color-highlight);}
+  .arrow-link:hover,.case-cta:hover{color:var(--color-highlight-text);}
+  .on-dark .arrow-link:hover{color:var(--color-band-highlight);}
+  .theme-btn:hover{border-color:var(--color-highlight);color:var(--color-highlight-text);}
+}
+.portrait-lime{background:var(--color-accent-orange);}
+.dot{background:var(--color-accent-orange);box-shadow:0 0 0 4px color-mix(in srgb,var(--color-accent-orange) 25%,transparent);}
+
+/* ---------- Acerca de: collage de fotos (sustituye la ilustración) ---------- */
+.about-collage{aspect-ratio:auto;border:0;border-radius:0;overflow:visible;position:relative;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"equipo equipo equipo" "taller lluvia presentando";gap:10px;}
+.ac-tile{margin:0;overflow:hidden;border-radius:12px;border:1px solid var(--color-border);background:var(--color-background-secondary);position:relative;z-index:1;}
+.ac-tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out);}
+.ac-equipo{grid-area:equipo;aspect-ratio:3/2;}
+.ac-lluvia-de-ideas{grid-area:lluvia;aspect-ratio:3/4;}
+.ac-presentando{grid-area:presentando;aspect-ratio:3/4;}
+.ac-taller{grid-area:taller;aspect-ratio:3/4;}
+
+.ac-accent{position:absolute;z-index:0;left:-14px;bottom:-14px;width:40%;height:30%;border-radius:12px;background:var(--color-accent-orange);opacity:.85;}
+@media (hover:hover){
+  .ac-tile:hover{border-color:var(--color-highlight);}
+  .ac-tile:hover img{transform:scale(1.04);}
+}
+@media (prefers-reduced-motion:reduce){ .ac-tile img{transition:none;} }
+@media (max-width:980px){ .about-collage{max-width:560px;} }
+@media (max-width:520px){ .ac-accent{left:-8px;bottom:-8px;} }
+@media (min-width:981px){ .about-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;} }
+
+/* Tarjetas de proyecto clicables en toda su superficie (ver home.js) */
+.flagship-card[data-card-link], .case[data-card-link] { cursor: pointer; }
+.flagship-card[data-card-link]:hover .flagship-title, .case[data-card-link]:hover .case-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.case[data-card-link]:hover .case-cta .arrow, .flagship-card[data-card-link]:hover .flagship-cta .arrow { display: inline-block; transform: translateX(3px); transition: transform .2s ease; }
+@media (prefers-reduced-motion: reduce) { .case[data-card-link]:hover .case-cta .arrow, .flagship-card[data-card-link]:hover .flagship-cta .arrow { transform: none; } }
+
+/* Responsive · tablets (431–979 px): la tarjeta de código del retrato no sale de la pantalla */
+@media (min-width: 431px) and (max-width: 979px) { .portrait-card { left: 0; } }

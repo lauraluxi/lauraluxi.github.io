@@ -1,0 +1,104 @@
+/* =====================================================================
+   Menú principal del sitio (todas las páginas) + barra secundaria de casos
+   Medidas, tipografía y comportamiento tomados del menú original del ZIP
+   (header.nav: padding 28px, enlaces 14.5px, CTA píldora violeta).
+   Colores desde los tokens del tema (--p-*), así funciona en claro y oscuro.
+   ===================================================================== */
+:root{ --sn-h:96px; --sn-max:1280px; --sn-gutter:72px; }
+@media (max-width:900px){ :root{ --sn-gutter:24px; } }
+
+/* ---------- barra fija ---------- */
+.sn{position:sticky;top:0;z-index:60;font-family:var(--font-disp);
+  background:color-mix(in srgb,var(--p-bg) 88%,transparent);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid transparent;}
+.sn.is-stuck{border-bottom-color:var(--p-line);}
+.sn-row{max-width:var(--sn-max);margin:0 auto;padding:28px var(--sn-gutter);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.sn.is-stuck .sn-row{padding-block:14px;}
+@media (prefers-reduced-motion:no-preference){
+  .sn,.sn-row{transition:padding .25s ease,border-color .25s ease,background-color .35s ease;}
+}
+
+.sn a{color:inherit;text-decoration:none;}
+.sn-brand{display:flex;align-items:baseline;gap:12px;font-weight:600;font-size:16px;color:var(--p-ink);white-space:nowrap;}
+.sn-brand .sn-tag{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--p-muted);letter-spacing:.03em;}
+
+.sn-links{display:flex;gap:36px;font-size:14.5px;}
+.sn-links a{position:relative;color:var(--p-ink);}
+.sn-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--color-highlight);transform:scaleX(0);transform-origin:left;transition:transform .22s ease;}
+.sn-links a:hover::after,.sn-links a[aria-current="page"]::after{transform:scaleX(1);}
+
+.sn-actions{display:flex;align-items:center;gap:22px;}
+.sn-lang{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);}
+.sn-lang .lang-btn{background:none;border:0;border-bottom:1px solid transparent;padding:4px 1px;margin:0;color:var(--p-muted);cursor:pointer;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;line-height:1.4;}
+.sn-lang .lang-btn.active{color:var(--p-ink);font-weight:700;border-bottom-color:var(--p-ink);}
+.sn-lang .lang-sep{color:var(--p-line);font-size:12px;}
+
+.sn .theme-btn{display:inline-grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid var(--p-line);border-radius:50%;background:none;color:var(--p-ink);cursor:pointer;transition:border-color .18s ease,color .18s ease,transform .25s cubic-bezier(.2,.7,.3,1);}
+.sn .theme-btn svg{width:16px;height:16px;grid-area:1/1;}
+.sn .theme-btn .i-sun{display:none;}
+:root[data-mode="dark"] .sn .theme-btn .i-sun{display:block;}
+:root[data-mode="dark"] .sn .theme-btn .i-moon{display:none;}
+.sn .theme-btn:hover{border-color:var(--color-highlight);color:var(--color-highlight-text);transform:rotate(-12deg);}
+
+.sn-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-disp);font-weight:600;font-size:14px;padding:11px 20px;border-radius:99px;background:var(--color-action-primary);color:var(--color-action-primary-foreground)!important;white-space:nowrap;transition:background .18s ease,transform .18s ease;}
+.sn-cta:hover{background:var(--color-action-primary-hover);transform:translateY(-1px);}
+
+.sn-burger{display:none;background:none;border:1px solid var(--p-line);border-radius:8px;width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:var(--p-ink);}
+.sn-burger .bars{width:18px;height:12px;position:relative;}
+.sn-burger .bars span{position:absolute;left:0;width:100%;height:1.6px;background:currentColor;}
+.sn-burger .bars span:nth-child(1){top:0;} .sn-burger .bars span:nth-child(2){top:5px;} .sn-burger .bars span:nth-child(3){top:10px;}
+
+.sn a:focus-visible,.sn button:focus-visible{outline:2px solid var(--p-accent);outline-offset:3px;border-radius:4px;}
+
+@media (max-width:1180px){ .sn-brand .sn-tag{display:none;} .sn-links{gap:26px;} .sn-actions{gap:16px;} }
+@media (max-width:960px){ .sn-links{display:none;} .sn-burger{display:flex;} }
+@media (max-width:520px){
+  .sn-row,.sn.is-stuck .sn-row{padding-block:12px;}
+  .sn-actions > .sn-cta,.sn-actions > .theme-btn,.sn-brand .sn-tag{display:none;}
+  .sn-actions{gap:14px;}
+}
+
+/* ---------- menú móvil (cajón) ---------- */
+.sn-drawer{position:fixed;inset:0;z-index:100;visibility:hidden;pointer-events:none;overflow:hidden;font-family:var(--font-disp);}
+.sn-drawer[data-open="true"]{visibility:visible;pointer-events:auto;}
+.sn-drawer .scrim{position:absolute;inset:0;background:rgba(29,25,34,.45);opacity:0;transition:opacity .2s ease;}
+.sn-drawer[data-open="true"] .scrim{opacity:1;}
+.sn-drawer .panel{position:absolute;top:0;right:0;height:100%;width:min(320px,84vw);background:var(--p-bg);color:var(--p-ink);border-left:1px solid var(--p-line);padding:24px 26px;display:flex;flex-direction:column;gap:30px;transform:translateX(100%);transition:transform .24s ease;overflow-y:auto;}
+.sn-drawer[data-open="true"] .panel{transform:translateX(0);}
+.sn-drawer a{color:inherit;text-decoration:none;}
+.sn-drawer .drawer-top{display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+.sn-drawer .drawer-close{background:none;border:1px solid var(--p-line);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;line-height:1;color:var(--p-ink);}
+.sn-drawer .drawer-nav{display:flex;flex-direction:column;gap:24px;font-size:19px;font-weight:500;}
+.sn-drawer .sn-cta{align-self:flex-start;}
+.sn-drawer .drawer-foot{display:flex;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--p-line);}
+.sn-drawer .theme-btn{display:inline-grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid var(--p-line);border-radius:50%;background:none;color:var(--p-ink);cursor:pointer;}
+.sn-drawer .theme-btn svg{width:16px;height:16px;grid-area:1/1;}
+.sn-drawer .theme-btn .i-sun{display:none;}
+:root[data-mode="dark"] .sn-drawer .theme-btn .i-sun{display:block;}
+:root[data-mode="dark"] .sn-drawer .theme-btn .i-moon{display:none;}
+@media (prefers-reduced-motion:reduce){ .sn-drawer .panel,.sn-drawer .scrim{transition:none;} }
+@media (min-width:961px){ .sn-drawer{display:none;} }
+
+/* ---------- barra secundaria de los casos (recorrido) ----------
+   Se pega justo debajo del menú principal. */
+.case-page header.lx-top{top:calc(env(safe-area-inset-top,0px) + var(--sn-h));z-index:55;border-top:0;}
+.case-page .lx-top .lx-bar{grid-template-columns:minmax(0,1fr);padding-block:4px;}
+.case-page .lx-top .pnav{grid-row:auto;}
+.case-page .pnav .lx-case{display:flex;align-items:center;height:100%;padding:8px 14px 8px 0;font:500 11.5px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--p-ink);white-space:nowrap;}
+.case-page .pnav .lx-case b{font-weight:500;color:var(--p-muted);margin-right:8px;}
+.lx-progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--brand,var(--p-accent));transform-origin:left;transform:scaleX(var(--lx-progress,0));pointer-events:none;}
+
+/* El menú se ve igual en todas las páginas: prioridad sobre los estilos de enlaces de cada caso */
+header.sn a,div.sn-drawer a{color:var(--p-ink);text-decoration:none;font-weight:inherit;}
+header.sn .sn-brand{font-weight:600;}
+header.sn a.sn-cta,div.sn-drawer a.sn-cta{color:var(--color-action-primary-foreground);font-weight:600;}
+header.sn .sn-links a{font-size:14.5px;}
+@media (max-width:520px){ .case-page .pnav .lx-case b{display:none;} .case-page .pnav .lx-case{padding-right:10px;} }
+
+/* realce rosa mexicano en el recorrido de los casos */
+.case-page .pnav a:hover{color:var(--color-highlight-text);}
+.lx-progress{background:var(--color-highlight);}
+
+/* Zonas táctiles: botones de idioma del menú principal de al menos 32 × 32 px (WCAG 2.5.8) */
+.sn .lang-btn { min-width: 32px; min-height: 32px; display: inline-flex; align-items: center; justify-content: center; }

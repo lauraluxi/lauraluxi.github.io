@@ -1,0 +1,101 @@
+/* =====================================================================
+   SISTEMA DE TEMAS · Laura Cruz Portfolio
+   «Human Intelligence × Digital Experience» · una identidad, dos modos de lectura, varias marcas de proyecto.
+
+   Capa 1 · Paleta de marca en crudo (valores; no usar directamente en componentes)
+   Capa 2 · Tokens semánticos (--color-*): lo único que usan los componentes
+   Capa 3 · Temas: PERSONAL LIGHT / PERSONAL DARK aquí;
+            WALMART, SANTANDER y TRUPER (light/dark) en casos/<caso>/css/<caso>.css
+   El modo activo lo marca <html data-mode="light|dark"> (boot.js lo aplica antes de pintar).
+   Se carga primero en todas las páginas.
+   ===================================================================== */
+
+/* ---------- Capa 1 · Paleta de marca (propuesta del brief, ajustada por contraste) ----------
+   Jerarquía: violeta = identidad · blanco y negro = estructura · rosa = expresividad · naranja = acento */
+:root{
+  --brand-primary:#60266F;        /* violeta de identidad */
+  --brand-deep:#35163F;           /* violeta profundo: bandas y hover */
+  --brand-pink:#E85A9B;           /* rosa: realce e indicadores (no texto sobre claro: 3.2:1) */
+  --brand-orange:#F28C45;         /* naranja: acento decorativo (no texto sobre claro: 2.4:1) */
+  --surface-light:#FFFAFC;
+  --surface-pink:#FBEAF3;
+  --surface-dark:#151218;
+  --text-light-theme:#241B29;
+  --text-dark-theme:#FFFFFF;
+
+  /* derivados por contraste (documentados en docs/TOKENS.md) */
+  --brand-primary-dark-mode:#D3A6E0;   /* violeta legible sobre oscuro (9.1:1) */
+  --brand-pink-text:#B8336F;           /* rosa para texto sobre claro (5.4:1) */
+  --brand-pink-dark-mode:#F27DB4;      /* rosa sobre oscuro (7.4:1) */
+  --brand-orange-text:#A9541B;         /* naranja para texto sobre claro (5.1:1) */
+  --brand-orange-dark-mode:#F5A066;    /* naranja sobre oscuro (8.9:1) */
+}
+
+/* ---------- Capa 2+3 · PERSONAL LIGHT ---------- */
+:root{
+  color-scheme:light;
+  --color-background:var(--surface-light);
+  --color-background-secondary:var(--surface-pink);
+  --color-surface:#FFFFFF;
+  --color-text-primary:var(--text-light-theme);
+  --color-text-secondary:#5D4F63;                 /* 7.4:1 */
+  --color-action-primary:var(--brand-primary);
+  --color-action-primary-hover:#4A1C56;
+  --color-action-primary-foreground:#FFFFFF;      /* 10.5:1 */
+  --color-accent-pink:var(--brand-pink);
+  --color-accent-orange:var(--brand-orange);
+  --color-accent-orange-text:var(--brand-orange-text);
+  --color-border:#E7D6E1;
+  --color-focus:var(--brand-primary);
+  --color-tint:var(--surface-pink);
+  --color-highlight:var(--brand-pink);            /* hover, indicadores activos (3.2:1, ≥3:1 UI) */
+  --color-highlight-text:var(--brand-pink-text);  /* texto rosa (5.4:1) */
+
+  /* Bandas (Experimentos, Servicios, Herramientas, Contacto, pie): violeta profundo */
+  --color-band-background:var(--brand-deep);
+  --color-band-surface:#45204F;
+  --color-band-surface-raised:#52295E;
+  --color-band-text-primary:#FFFFFF;              /* 15.7:1 */
+  --color-band-text-secondary:#DCC9E2;            /* 10.1:1 */
+  --color-band-border:#5E3669;
+  --color-band-accent:var(--brand-pink-dark-mode);
+  --color-band-highlight:var(--brand-pink-dark-mode); /* 6.3:1 sobre la banda */
+  --color-band-action:#FFFFFF;
+  --color-band-action-foreground:var(--brand-deep);
+}
+
+/* ---------- PERSONAL DARK ---------- */
+:root[data-mode="dark"]{
+  color-scheme:dark;
+  --color-background:var(--surface-dark);
+  --color-background-secondary:#201A25;
+  --color-surface:#2B2331;
+  --color-text-primary:var(--text-dark-theme);
+  --color-text-secondary:#CFC2D4;                 /* 10.9:1 */
+  --color-action-primary:var(--brand-primary-dark-mode);
+  --color-action-primary-hover:#E2BFEC;
+  --color-action-primary-foreground:var(--surface-dark);
+  --color-accent-pink:var(--brand-pink-dark-mode);
+  --color-accent-orange:var(--brand-orange-dark-mode);
+  --color-accent-orange-text:var(--brand-orange-dark-mode);
+  --color-border:#43384A;
+  --color-focus:var(--brand-primary-dark-mode);
+  --color-tint:#201A25;
+  --color-highlight:var(--brand-pink-dark-mode);
+  --color-highlight-text:var(--brand-pink-dark-mode);
+
+  --color-band-background:#201A25;
+  --color-band-surface:#2B2331;
+  --color-band-surface-raised:#362C3D;
+  --color-band-text-primary:#FFFFFF;
+  --color-band-text-secondary:#CFC2D4;
+  --color-band-border:#43384A;
+  --color-band-accent:var(--brand-pink-dark-mode);
+  --color-band-highlight:var(--brand-pink-dark-mode);
+  --color-band-action:var(--brand-primary-dark-mode);
+  --color-band-action-foreground:var(--surface-dark);
+}
+
+/* foco visible común (WCAG 2.4.7) */
+:where(a,button,input,[tabindex]):focus-visible{outline-color:var(--color-focus);}
+::selection{background:var(--color-action-primary);color:var(--color-action-primary-foreground);}
