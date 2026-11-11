@@ -1,0 +1,24 @@
+/* Identidad Truper (origen: V2) */
+:root #truper{--bg:#F5F6F7;--line:#DADEE0;--card:#FFFFFF;--ink:#1C2428;--muted:#4A565C;--dim:#5E6B72;--pill:#ECEEEF;--blob1:rgba(255,102,1,.16);--blob2:rgba(63,81,90,.14)}
+:root[data-mode="dark"] #truper{--bg:#161D21;--line:#2F3A40;--card:#1F282D;--ink:#F2F4F5;--muted:#B5BFC4;--dim:#8A979E;--pill:#243036;--blob1:rgba(255,102,1,.13);--blob2:rgba(63,81,90,.32)}
+#truper main{--violet:#FF6601;--violet-ink:#3F515A;--soft:#FFEDE0;--lime:#FF6601;--sky:#3F515A;--inverse:#2F3E45;--on-inverse:#FFFFFF;--f-display:"Libre Franklin","Franklin Gothic Medium",Helvetica,Arial,sans-serif;--f-mono:"Libre Franklin","Franklin Gothic Medium",Helvetica,Arial,sans-serif;font-family:var(--f-display)}
+:root[data-mode="dark"] #truper main{--violet-ink:#A9BCC6;--soft:#33241A;--inverse:#26343B}
+#truper main :is(h1,h2,h3,.statement){font-family:var(--f-display);font-weight:800;letter-spacing:-.02em}
+#truper main .lx-hero h1 .dim{font-weight:400}
+#truper main .sec-side h2{font-weight:800}
+#truper main :is(.lx-card .n,.stat .n){font-weight:900;letter-spacing:-.03em}
+#truper main .mono{font-weight:700;letter-spacing:.14em}
+#truper main :is(.heroshot .frame,.callout,.hmw,.lx-win,.lx-card,.reveal-grid>div,.vchart,.cyc,.pats>div,.rec,.stat,.fig .zoom,.card,.tbl,.userstory,dl.chain,details.acc,.proto-poster){border-radius:8px}
+#truper main :is(.btn.solid,.vc-chip,.sym.op,.tag-b,.hmw mark,.st.dec,.hero .kicker b){color:#1C2428}
+#truper main .st.dec{border-color:#C74D00}
+#truper main .btn.solid:hover{background:#E85A00;border-color:#E85A00}
+#truper main .btn.solid:active{background:#C74D00}
+#truper dialog.lb button{color:#1C2428;background:#FF6601}
+#truper main :is(.stat.hl .n span,.callout .eyebrow,.next .eyebrow,.reveal-grid .k,.cyc.now .k,.ia .after .from,.callout.reflect .sign){color:#FF9A5C}
+#truper main :is(.hmw,.st.des){border-color:#FFC9A3}
+#truper main :is(dl.chain>div:last-child,.mx tr.hl td){background:#FFF3EB}
+:root[data-mode="dark"] #truper main :is(.hmw,.st.des){border-color:#5A3A22}
+:root[data-mode="dark"] #truper main :is(dl.chain>div:last-child,.mx tr.hl td){background:#2A2018}
+:root[data-mode="dark"] #truper main .hmw{background:#2A2018}
+
+
