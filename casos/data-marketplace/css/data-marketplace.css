@@ -1,0 +1,21 @@
+/* Identidad Data Marketplace · Walmart
+   Cabecera y pie: identidad personal. Acceso y contenido del caso: acento Walmart. */
+#data-marketplace{--brand:#0071CE;--brand-tint:#E6F0FA;--brand-ink:#004F9A;--brand-on:#FFFFFF;}
+:root[data-mode="dark"] #data-marketplace{--brand:#4DA3EC;--brand-tint:#1B2A3B;--brand-ink:#9CCBF5;--brand-on:#0B1A2A;}
+#data-marketplace main{--violet:#0071CE;--violet-ink:#004F9A;--soft:#E6F0FA;}
+:root[data-mode="dark"] #data-marketplace main{--violet:#4DA3EC;--violet-ink:#9CCBF5;--soft:#1B2A3B;}
+#data-marketplace .dmp-lockwrap{--card:var(--color-surface);}
+:root[data-mode="dark"] #data-marketplace .dmp-lockwrap{--card:var(--color-surface);}
+#data-marketplace:not(.is-open) .pnav .dmp-navlink{display:none;}
+
+/* Documentación del sistema de diseño (sección 05): pestañas; las láminas altas se muestran completas
+   con altura limitada y se abren a tamaño real en el lightbox */
+#data-marketplace .ds-docs .lx-tabpanel img{display:block;width:auto;max-width:100%;max-height:min(72vh,720px);height:auto;margin:0 auto;}
+#data-marketplace .ds-docs .lx-tabpanel figcaption{text-align:left;}
+
+/* Impacto · «El ecosistema que DMP ayudó a sostener» */
+#data-marketplace .eco > p:not(.eyebrow):not(.note){margin-top:var(--s3);}
+#data-marketplace .eco .grid2{margin-top:var(--s5);}
+#data-marketplace .eco .eco-title{font-size:22px;letter-spacing:-.01em;}
+#data-marketplace .eco .vc-n small{font-size:12px;font-weight:400;letter-spacing:0;margin-left:4px;color:var(--muted);}
+#data-marketplace .eco .note{margin-top:var(--s4);}
